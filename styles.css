@@ -82,6 +82,7 @@ nav {
   flex-direction: column;
   gap: 3px;
   line-height: 1;
+  align-items: center;
 }
 .logo-name {
   font-family: Georgia, 'Times New Roman', serif;
@@ -93,10 +94,11 @@ nav {
   line-height: 1;
 }
 .logo-sub {
-  font-size: 0.5rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.32em;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1;
 }
