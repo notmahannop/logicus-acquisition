@@ -80,19 +80,26 @@
         <!-- SVG MIND MAP — viewBox 1060×380 -->
         <svg viewBox="0 0 1060 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Funnel flow diagram showing traffic, landing page, upsell offer, quiz segmentation, lead magnets, email sequences, and coaching offer">
           <defs>
-            <!-- Arrowhead markers -->
-            <marker id="arr-gray"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+            <marker id="arr-gray"   viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
               <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#8896A5"/>
             </marker>
-            <marker id="arr-teal"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2A9D8F"/>
+            <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F59E0B"/>
             </marker>
-            <marker id="arr-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+            <marker id="arr-blue"   viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
               <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563EB"/>
             </marker>
-            <!-- Coral glow filter for featured nodes -->
-            <filter id="glow-coral" x="-30%" y="-30%" width="160%" height="160%">
+            <marker id="arr-green"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#059669"/>
+            </marker>
+            <filter id="glow-orange" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#F59E0B" flood-opacity="0.28"/>
+            </filter>
+            <filter id="glow-blue" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#2563EB" flood-opacity="0.22"/>
+            </filter>
+            <filter id="glow-green" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#059669" flood-opacity="0.25"/>
             </filter>
           </defs>
 
@@ -107,29 +114,28 @@
           <!-- ===== ARROWS ===== -->
           <!-- Traffic → Landing (gray) -->
           <path d="M 120 200 L 138 200" stroke="#8896A5" stroke-width="1.5" fill="none" marker-end="url(#arr-gray)"/>
-
           <!-- Landing → OTO (gray) -->
           <path d="M 258 200 L 278 200" stroke="#8896A5" stroke-width="1.5" fill="none" marker-end="url(#arr-gray)"/>
 
           <!-- OTO → 3 segments -->
-          <path d="M 448 200 L 475 200 L 475 100 L 510 100" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
-          <path d="M 448 200 L 508 200"                     stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-coral)"/>
-          <path d="M 448 200 L 475 200 L 475 300 L 510 300" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
+          <path d="M 448 200 L 475 200 L 475 100 L 508 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-orange)"/>
+          <path d="M 448 200 L 508 200"                     stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"/>
+          <path d="M 448 200 L 475 200 L 475 300 L 508 300" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#arr-green)"/>
 
           <!-- Seg → Lead Magnet -->
-          <path d="M 630 100 L 650 100" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
-          <path d="M 632 200 L 648 200" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-coral)"/>
-          <path d="M 630 300 L 650 300" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
+          <path d="M 632 100 L 648 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-orange)"/>
+          <path d="M 632 200 L 648 200" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"/>
+          <path d="M 632 300 L 648 300" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#arr-green)"/>
 
           <!-- Lead Magnet → Email Sequence -->
-          <path d="M 770 100 L 790 100" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
-          <path d="M 772 200 L 788 200" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-coral)"/>
-          <path d="M 770 300 L 790 300" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
+          <path d="M 772 100 L 786 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-orange)"/>
+          <path d="M 772 200 L 786 200" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"/>
+          <path d="M 772 300 L 786 300" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#arr-green)"/>
 
-          <!-- Email Sequences → Sale (converge) -->
-          <path d="M 910 100 L 934 100 L 934 200 L 935 200" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
-          <path d="M 912 200 L 935 200"                     stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-coral)"/>
-          <path d="M 910 300 L 934 300 L 934 200 L 935 200" stroke="#2A9D8F" stroke-width="1.5" fill="none" marker-end="url(#arr-teal)"/>
+          <!-- Email Sequences → Coaching (converge) -->
+          <path d="M 910 100 L 934 100 L 934 200 L 935 200" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-orange)"/>
+          <path d="M 910 200 L 935 200"                     stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"/>
+          <path d="M 910 300 L 934 300 L 934 200 L 935 200" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#arr-green)"/>
 
           <!-- ===== NODES ===== -->
 
@@ -148,48 +154,47 @@
           <text x="364" y="196" text-anchor="middle" fill="#3D4F60" font-size="11" font-weight="600" font-family="Inter,sans-serif">Upsell / OTO</text>
           <text x="364" y="212" text-anchor="middle" fill="#8896A5" font-size="9.5" font-family="Inter,sans-serif">One-Time Offer</text>
 
-          <!-- Seg 1 (teal) -->
-          <rect x="510" y="78" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="570" y="104" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">Segment 1</text>
+          <!-- Seg 1 (orange) -->
+          <rect x="508" y="76" width="124" height="48" rx="8" fill="#FFF3E0" stroke="#F59E0B" stroke-width="2" filter="url(#glow-orange)"/>
+          <text x="570" y="104" text-anchor="middle" fill="#92400E" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 1</text>
 
-          <!-- Seg 2 (coral — FEATURED) -->
-          <rect x="508" y="176" width="124" height="48" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="2" filter="url(#glow-coral)"/>
-          <text x="570" y="196" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 2</text>
-          <text x="570" y="213" text-anchor="middle" fill="#2563EB" font-size="9.5" font-family="Inter,sans-serif">★</text>
+          <!-- Seg 2 (blue) -->
+          <rect x="508" y="176" width="124" height="48" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="2" filter="url(#glow-blue)"/>
+          <text x="570" y="204" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 2</text>
 
-          <!-- Seg 3 (teal) -->
-          <rect x="510" y="278" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="570" y="304" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">Segment 3</text>
+          <!-- Seg 3 (green) -->
+          <rect x="508" y="276" width="124" height="48" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="2" filter="url(#glow-green)"/>
+          <text x="570" y="304" text-anchor="middle" fill="#065F46" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 3</text>
 
-          <!-- Lead Magnet 1 (teal) -->
-          <rect x="650" y="78" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="710" y="96" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="112" text-anchor="middle" fill="#2A9D8F" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
+          <!-- Lead Magnet 1 (orange) -->
+          <rect x="648" y="78" width="124" height="44" rx="8" fill="#FFF3E0" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="710" y="96" text-anchor="middle" fill="#92400E" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
+          <text x="710" y="112" text-anchor="middle" fill="#B45309" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
 
-          <!-- Lead Magnet 2 (coral — FEATURED) -->
-          <rect x="648" y="176" width="124" height="48" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="2" filter="url(#glow-coral)"/>
-          <text x="710" y="196" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="700" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="213" text-anchor="middle" fill="#2563EB" font-size="9.5" font-family="Inter,sans-serif">Segment 2 ★</text>
+          <!-- Lead Magnet 2 (blue) -->
+          <rect x="648" y="178" width="124" height="44" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="1.5"/>
+          <text x="710" y="196" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
+          <text x="710" y="212" text-anchor="middle" fill="#2563EB" font-size="9.5" font-family="Inter,sans-serif">Segment 2</text>
 
-          <!-- Lead Magnet 3 (teal) -->
-          <rect x="650" y="278" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="710" y="296" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="312" text-anchor="middle" fill="#2A9D8F" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
+          <!-- Lead Magnet 3 (green) -->
+          <rect x="648" y="278" width="124" height="44" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+          <text x="710" y="296" text-anchor="middle" fill="#065F46" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
+          <text x="710" y="312" text-anchor="middle" fill="#059669" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
 
-          <!-- Email Seq 1 (teal) -->
-          <rect x="790" y="78" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="850" y="96" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="850" y="112" text-anchor="middle" fill="#2A9D8F" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
+          <!-- Email Seq 1 (orange) -->
+          <rect x="786" y="78" width="124" height="44" rx="8" fill="#FFF3E0" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="848" y="96" text-anchor="middle" fill="#92400E" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
+          <text x="848" y="112" text-anchor="middle" fill="#B45309" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
 
-          <!-- Email Seq 2 (coral — FEATURED) -->
-          <rect x="788" y="176" width="124" height="48" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="2" filter="url(#glow-coral)"/>
-          <text x="850" y="196" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="700" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="850" y="213" text-anchor="middle" fill="#2563EB" font-size="9.5" font-family="Inter,sans-serif">Segment 2 ★</text>
+          <!-- Email Seq 2 (blue) -->
+          <rect x="786" y="178" width="124" height="44" rx="8" fill="#EBF2FF" stroke="#2563EB" stroke-width="1.5"/>
+          <text x="848" y="196" text-anchor="middle" fill="#1A4DAA" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
+          <text x="848" y="212" text-anchor="middle" fill="#2563EB" font-size="9.5" font-family="Inter,sans-serif">Segment 2</text>
 
-          <!-- Email Seq 3 (teal) -->
-          <rect x="790" y="278" width="120" height="44" rx="8" fill="#E8F4F2" stroke="#2A9D8F" stroke-width="1.5"/>
-          <text x="850" y="296" text-anchor="middle" fill="#1A6B63" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="850" y="312" text-anchor="middle" fill="#2A9D8F" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
+          <!-- Email Seq 3 (green) -->
+          <rect x="786" y="278" width="124" height="44" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+          <text x="848" y="296" text-anchor="middle" fill="#065F46" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
+          <text x="848" y="312" text-anchor="middle" fill="#059669" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
 
           <!-- Coaching Offer (gray) -->
           <rect x="935" y="178" width="90" height="44" rx="8" fill="#E8EDF2" stroke="#8896A5" stroke-width="1.5"/>
@@ -200,12 +205,16 @@
 
       <div class="diagram-legend">
         <div class="legend-item">
-          <div class="legend-dot coral"></div>
-          <span>Segment 2 — fully built out (featured example)</span>
+          <div class="legend-dot" style="background:#F59E0B;"></div>
+          <span>Segment 1 — lead magnet 1 → 5-email sequence</span>
         </div>
         <div class="legend-item">
-          <div class="legend-dot teal"></div>
-          <span>Segments 1 &amp; 3 — same structure, different content</span>
+          <div class="legend-dot" style="background:#2563EB;"></div>
+          <span>Segment 2 — lead magnet 2 → 5-email sequence</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#059669;"></div>
+          <span>Segment 3 — lead magnet 3 → 5-email sequence</span>
         </div>
         <div class="legend-item">
           <div class="legend-dot gray"></div>
