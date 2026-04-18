@@ -373,13 +373,47 @@
     </div>
   </section>
 
-  <!-- ======================== FINAL CTA ======================== -->
-  <section class="cta-section">
+  <!-- ======================== AUDIT SECTION ======================== -->
+  <section class="audit-section">
     <div class="container">
-      <div class="section-label" style="color: var(--coral);">Experience It Yourself</div>
-      <h2>See the funnel respond to you.</h2>
-      <p>Take the 60-second quiz and watch the segmentation happen in real time. This is exactly what your leads would experience.</p>
-      <a href="funnel.html" class="btn btn-coral btn-lg">Take the quiz →</a>
+      <div class="audit-inner">
+        <div class="section-label">Free Funnel Audit</div>
+        <h2>Want me to audit yours?</h2>
+        <p class="section-sub">Tell me where your funnel is at — I'll show you exactly where it's losing leads and what a segmented build would look like for your business.</p>
+
+        <form class="audit-form" id="auditForm" novalidate>
+          <div class="form-group">
+            <label for="auditName">Full Name</label>
+            <input type="text" id="auditName" name="fullName" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="auditEmail">Email Address</label>
+            <input type="email" id="auditEmail" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="auditIG">IG Handle</label>
+            <input type="text" id="auditIG" name="igHandle" placeholder="@yourhandle">
+          </div>
+          <div class="form-group">
+            <label for="auditService">Service Interest</label>
+            <select id="auditService" name="serviceInterest" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="full-funnel">Full segmented opt-in funnel</option>
+              <option value="nurture-sequence">Welcome/nurture sequence only</option>
+              <option value="landing-page">Landing page optimization only</option>
+              <option value="oto-page">Upsell/OTO page optimization only</option>
+              <option value="lead-magnet">Lead magnet creation only</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-coral audit-submit">Request My Free Audit →</button>
+        </form>
+
+        <div class="audit-success" id="auditSuccess">
+          <div class="audit-success-icon">✓</div>
+          <h3>Got it — I'll be in touch.</h3>
+          <p>I review every submission personally and typically follow up within 24 hours.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -395,6 +429,7 @@
       card.classList.toggle('open');
     }
   </script>
+  <script src="quiz.js"></script>
 
 </body>
 </html>

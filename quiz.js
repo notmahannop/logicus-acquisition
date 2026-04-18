@@ -77,3 +77,47 @@ function submitQuiz() {
     window.location.href = 'confirmation.html?segment=' + segment;
   }, 1400);
 }
+
+// =============================================
+//  Audit Form — index.html
+// =============================================
+(function () {
+  const form = document.getElementById('auditForm');
+  if (!form) return;
+
+  const successBox = document.getElementById('auditSuccess');
+
+  function validate() {
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(function (el) {
+      el.classList.remove('field-error');
+      const empty = el.tagName === 'SELECT'
+        ? !el.value
+        : !el.value.trim();
+      if (empty) {
+        el.classList.add('field-error');
+        ok = false;
+      }
+    });
+    // Basic email format check
+    const emailEl = document.getElementById('auditEmail');
+    if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('field-error');
+      ok = false;
+    }
+    return ok;
+  }
+
+  // Clear error state on input
+  form.querySelectorAll('input, select').forEach(function (el) {
+    el.addEventListener('input', function () { el.classList.remove('field-error'); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    form.style.display = 'none';
+    successBox.style.display = 'block';
+  });
+}());
