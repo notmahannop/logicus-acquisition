@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Guide Is Ready — LOGICUS ACQUISITION Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================== NAV ======================== -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo-mark">
+        <img src="icon.png" width="30" height="30" alt="" style="filter: brightness(0) invert(1);">
+        <div class="logo-stack">
+          <div class="logo-name">LOGICUS</div>
+          <div class="logo-sub">ACQUISITION</div>
+        </div>
+      </div>
+      <a href="index.html" style="color:rgba(255,255,255,0.5); font-size:0.85rem; text-decoration:none; font-weight:500;">← Back to portfolio</a>
+    </div>
+  </nav>
+
+  <!-- ======================== CONFIRM HERO ======================== -->
+  <section class="confirm-hero">
+    <div class="container">
+      <div class="confirm-badge">
+        <!-- SVG checkmark -->
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 7L5.5 10L11.5 4" stroke="#3BBDAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        You're matched
+      </div>
+      <!-- Headline and subhead injected by JS -->
+      <h1 id="confirm-headline">Your guide is ready</h1>
+      <p id="confirm-subhead"></p>
+    </div>
+  </section>
+
+  <!-- ======================== CONFIRM BODY ======================== -->
+  <section class="confirm-body">
+    <div class="container" style="padding: 56px 24px 80px;">
+
+      <!-- Download card -->
+      <div class="confirm-card">
+        <h3 id="card-title">Download your guide</h3>
+        <p id="card-desc" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px; line-height:1.7;"></p>
+        <a href="#" class="download-btn" onclick="return false;" title="PDF not live in this demo">
+          <!-- Download icon SVG -->
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2V11M9 11L6 8M9 11L12 8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 13.5H15" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span id="btn-label">Download PDF</span>
+        </a>
+        <p style="font-size:0.75rem; color:var(--gray); margin-top:10px; font-style:italic;">
+          ↑ Placeholder link — the PDF is not live in this portfolio demo.
+        </p>
+      </div>
+
+      <!-- What happens next -->
+      <div class="confirm-card" style="margin-top:20px;">
+        <h3>What happens next</h3>
+        <ul class="confirm-steps">
+          <li>
+            <div class="step-num">1</div>
+            <span>Check your inbox — your first email from Mike is already on its way. Add him to your contacts so it doesn't get buried.</span>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <span id="step2-text">Over the next few days you'll get a short email sequence built specifically for your situation — not a generic broadcast.</span>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <span>If you want to go further, Mike works with a small number of dads 1-on-1. Email 4 in the sequence includes an application link if that interests you.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Segment label (for demo transparency) -->
+      <div style="max-width:640px; margin:28px auto 0; padding:16px 20px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.15); border-radius:8px; text-align:center;">
+        <p style="font-size:0.78rem; color:var(--coral); font-weight:600; letter-spacing:0.05em; margin-bottom:4px;">PORTFOLIO DEMO NOTE</p>
+        <p id="segment-note" style="font-size:0.83rem; color:var(--text-muted); margin:0; line-height:1.6;"></p>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="index.html" style="color:var(--coral); font-size:0.9rem; font-weight:600; text-decoration:none;">← See how this funnel was built</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="container">
+      <p>© 2026 LOGICUS ACQUISITION &nbsp;·&nbsp; Live Portfolio Demo</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Read segment from URL param ──
+    const params  = new URLSearchParams(window.location.search);
+    const segment = params.get('segment') || '2';
+
+    // ── Content map per segment ──
+    const content = {
+      '1': {
+        headline: 'Your New Dad Quick-Start guide is ready',
+        subhead:  'You've got a lot going on right now — we keep it simple. This guide is built for dads with kids under 5.',
+        cardTitle: 'Download: The New Dad Quick-Start',
+        cardDesc:  'Short, realistic, and designed around nap windows and zero free time. This is your starting point — not a 90-day program, just the first move.',
+        btnLabel:  'Download PDF',
+        step2:     'Over the next few days you\'ll get a short email sequence tailored for dads in the new-baby phase — practical, not overwhelming.',
+        segNote:   'You selected "Under 5 years old" — this is Segment 1 (New Dad path). In a live funnel, the lead magnet, email subject lines, and sequence content would all be built around the new-dad context.',
+      },
+      '2': {
+        headline: 'Your Stolen Minutes Method guide is ready',
+        subhead:  'Built for dads with school-aged kids — the schedule is full, but the windows are there if you know where to look.',
+        cardTitle: 'Download: The Stolen Minutes Method',
+        cardDesc:  'Train smarter around your kids\' schedule — without adding a single obligation to your week. This guide shows you how to find and use the time you already have.',
+        btnLabel:  'Download PDF',
+        step2:     'Over the next few days you\'ll get a 4-part email sequence built specifically for dads with kids aged 5–12 — the Visible Dad sequence.',
+        segNote:   'You selected "5 to 12 years old" — this is Segment 2 (the fully built-out path). The lead magnet, headline, and email sequence you just saw on the home page are exactly what this segment receives.',
+      },
+      '3': {
+        headline: 'Your Teen Dad Blueprint is ready',
+        subhead:  'Your kids are old enough to make their own judgements. This guide is built for dads who know the window is closing.',
+        cardTitle: 'Download: The Teen Dad Blueprint',
+        cardDesc:  'Less about building habits from scratch, more about rebuilding credibility — with your kids, and with yourself. Designed for the realities of life with teenagers.',
+        btnLabel:  'Download PDF',
+        step2:     'Over the next few days you\'ll get a short email sequence tailored for dads with teen-aged kids — direct, no fluff.',
+        segNote:   'You selected "13 and older" — this is Segment 3 (Teen Dad path). In a live funnel, this segment gets its own lead magnet and email sequence with messaging specific to the teen-dad context.',
+      },
+    };
+
+    // ── Inject content ──
+    const c = content[segment] || content['2'];
+
+    document.getElementById('confirm-headline').textContent = c.headline;
+    document.getElementById('confirm-subhead').textContent  = c.subhead;
+    document.getElementById('card-title').textContent       = c.cardTitle;
+    document.getElementById('card-desc').textContent        = c.cardDesc;
+    document.getElementById('btn-label').textContent        = c.btnLabel;
+    document.getElementById('step2-text').textContent       = c.step2;
+    document.getElementById('segment-note').textContent     = c.segNote;
+  </script>
+
+</body>
+</html>

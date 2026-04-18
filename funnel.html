@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Back in Shape — LOGICUS ACQUISITION Demo Funnel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================== NAV ======================== -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo-mark">
+        <img src="icon.png" width="30" height="30" alt="" style="filter: brightness(0) invert(1);">
+        <div class="logo-stack">
+          <div class="logo-name">LOGICUS</div>
+          <div class="logo-sub">ACQUISITION</div>
+        </div>
+      </div>
+      <a href="index.html" style="color:rgba(255,255,255,0.5); font-size:0.85rem; text-decoration:none; font-weight:500;">← Back to portfolio</a>
+    </div>
+  </nav>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="funnel-hero">
+    <div class="container">
+      <div class="hero-label">The Visible Dad Challenge</div>
+      <h1>Finally get back in shape —<br>even with a house full of wild kids</h1>
+      <p>Your kids are watching. This quiz matches you with the right starting point — based on your actual schedule, not a generic plan.</p>
+    </div>
+  </section>
+
+  <!-- ======================== COPY BLOCK ======================== -->
+  <div class="funnel-copy">
+    <div class="funnel-copy-inner">
+      <p>Between the school runs, the late nights, and the "I'll start Monday" cycles — most dads end up last on their own list.</p>
+      <p>Here's the thing: <strong>your kids are already forming opinions.</strong> About what a man looks like when things get hard. About whether dad follows through. About what it means to take care of yourself.</p>
+      <p>The way you show up for yourself is the template they'll carry — permanently.</p>
+      <p>This isn't a generic fitness program. Answer 4 quick questions and we'll match you with the right guide and starting point for your exact situation.</p>
+    </div>
+  </div>
+
+  <!-- ======================== QUIZ ======================== -->
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-wrap">
+
+        <!-- Progress bar -->
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" style="width: 25%;"></div>
+        </div>
+
+        <!-- Quiz card -->
+        <div class="quiz-card">
+
+          <!-- ─── Step 1: Kids' ages (THE segmentation question) ─── -->
+          <div class="quiz-step active" data-step="1" data-id="kids_age">
+            <div class="quiz-q">How old are your kids?</div>
+            <div class="quiz-hint">This is the main factor in what we send you — each age range has a completely different guide and sequence.</div>
+            <div class="quiz-options">
+              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '1')">
+                <input type="radio" name="kids_age" value="1"> Under 5 years old
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '2')">
+                <input type="radio" name="kids_age" value="2"> 5 to 12 years old
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '3')">
+                <input type="radio" name="kids_age" value="3"> 13 and older
+              </label>
+            </div>
+          </div>
+
+          <!-- ─── Step 2: Biggest challenge ─── -->
+          <div class="quiz-step" data-step="2" data-id="challenge">
+            <div class="quiz-q">What's your biggest challenge right now?</div>
+            <div class="quiz-options">
+              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'a')">
+                <input type="radio" name="challenge" value="a"> I don't have enough time
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'b')">
+                <input type="radio" name="challenge" value="b"> I have the time, but no energy left by then
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'c')">
+                <input type="radio" name="challenge" value="c"> I keep starting over and losing momentum
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'd')">
+                <input type="radio" name="challenge" value="d"> I don't know what to actually do
+              </label>
+            </div>
+          </div>
+
+          <!-- ─── Step 3: Consistency ─── -->
+          <div class="quiz-step" data-step="3" data-id="consistency">
+            <div class="quiz-q">How consistent have you been with fitness in the last 6 months?</div>
+            <div class="quiz-options">
+              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'a')">
+                <input type="radio" name="consistency" value="a"> Pretty consistent — 3+ times a week
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'b')">
+                <input type="radio" name="consistency" value="b"> On and off — a few times a month
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'c')">
+                <input type="radio" name="consistency" value="c"> I keep meaning to restart
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'd')">
+                <input type="radio" name="consistency" value="d"> Basically nothing — life just took over
+              </label>
+            </div>
+          </div>
+
+          <!-- ─── Step 4: Main goal ─── -->
+          <div class="quiz-step" data-step="4" data-id="goal">
+            <div class="quiz-q">What's your main goal?</div>
+            <div class="quiz-options">
+              <label class="quiz-option" onclick="selectOption(this, 'goal', 'a')">
+                <input type="radio" name="goal" value="a"> Lose weight and look better
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'goal', 'b')">
+                <input type="radio" name="goal" value="b"> More energy to keep up with my kids
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'goal', 'c')">
+                <input type="radio" name="goal" value="c"> Build real strength and feel strong again
+              </label>
+              <label class="quiz-option" onclick="selectOption(this, 'goal', 'd')">
+                <input type="radio" name="goal" value="d"> Honestly, all of the above
+              </label>
+            </div>
+          </div>
+
+          <!-- ─── Footer row: back / progress / submit ─── -->
+          <div class="quiz-footer">
+            <button id="back-btn" class="quiz-back-btn" onclick="goBack()" data-hidden="true">← Back</button>
+            <span class="quiz-progress-text">Question 1 of 4</span>
+            <span id="quiz-hint" class="quiz-continue-hint">tap an answer to continue</span>
+            <div id="submit-wrap" style="display: none;">
+              <button id="submit-btn" class="btn btn-coral" onclick="submitQuiz()" disabled>Get my guide →</button>
+            </div>
+          </div>
+
+        </div><!-- /quiz-card -->
+
+        <p style="text-align:center; font-size:0.78rem; color:var(--gray); margin-top:16px;">
+          No email required to take the quiz. You'll enter your details on the next page.
+        </p>
+
+      </div><!-- /quiz-wrap -->
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="container">
+      <p>© 2026 LOGICUS ACQUISITION &nbsp;·&nbsp; Live Portfolio Demo</p>
+    </div>
+  </footer>
+
+  <script src="quiz.js"></script>
+
+</body>
+</html>
