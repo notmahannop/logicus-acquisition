@@ -803,14 +803,9 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   flex-shrink: 0;
   margin-top: 1px;
 }
-.personalization-list li > div {
-  flex: 1;
-}
 .personalization-list li span {
-  display: block;
   color: #fff;
   font-weight: 600;
-  margin-bottom: 2px;
 }
 .personalization-callout {
   font-size: 17px;
