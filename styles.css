@@ -259,6 +259,7 @@ nav {
 /* ---- Hero CTA (below VSL) ---- */
 .hero-cta {
   margin-top: 44px;
+  text-align: center;
 }
 
 /* ---- Section Base ---- */
@@ -290,6 +291,17 @@ h2 {
 
 /* ---- How It Works ---- */
 .how-it-works { background: var(--navy); }
+
+.swipe-hint {
+  display: none;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 12px;
+}
+@media (max-width: 680px) {
+  .swipe-hint { display: block; }
+}
 
 .diagram-wrap {
   background: #07070A;
@@ -735,6 +747,70 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 36px 36px 28px;
+}
+
+/* ---- Personalization Section ---- */
+.personalization-section {
+  background: var(--navy);
+  padding: 80px 0;
+}
+.personalization-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.personalization-section h2 {
+  color: #fff;
+  margin-bottom: 16px;
+}
+.personalization-section .section-sub {
+  margin-bottom: 28px;
+}
+.personalization-body {
+  color: rgba(255,255,255,0.65);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.personalization-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.personalization-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: rgba(255,255,255,0.65);
+  font-size: 15.5px;
+  line-height: 1.6;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+.personalization-list li::before {
+  content: "→";
+  color: #D04F2B;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.personalization-list li span {
+  color: #fff;
+  font-weight: 600;
+}
+.personalization-callout {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  font-style: italic;
+  border-left: 3px solid #D04F2B;
+  padding-left: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
 /* ---- Audit Section ---- */
