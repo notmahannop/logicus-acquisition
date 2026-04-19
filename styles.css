@@ -955,4 +955,11 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   h2 { font-size: clamp(1.5rem, 6vw, 1.9rem); line-height: 1.25; }
   .personalization-section h2,
   .audit-section h2 { text-align: center; }
+  .personalization-list li {
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .personalization-callout { font-size: 15px; }
 }
