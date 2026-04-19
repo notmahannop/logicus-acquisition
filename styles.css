@@ -280,6 +280,8 @@ h2 {
   letter-spacing: -0.5px;
   line-height: 1.2;
   margin-bottom: 12px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .section-sub {
   font-size: 1.05rem;
@@ -946,4 +948,7 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   .confirm-card { padding: 24px 20px; }
   .quiz-wrap { padding: 0 4px; }
   .audit-success { padding: 36px 20px; }
+  h2 { font-size: clamp(1.5rem, 6vw, 1.9rem); line-height: 1.25; }
+  .personalization-section h2,
+  .audit-section h2 { text-align: center; }
 }
