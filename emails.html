@@ -9,6 +9,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Fixed nav — this page only */
+    body > nav {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+    /* Push content below the fixed nav */
+    body {
+      padding-top: 65px;
+    }
+    .nav-inner {
+      position: relative;
+    }
+    .back-link {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #D04F2B;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #E8673A; }
+
     .emails-hero {
       padding: 64px 0 48px;
       text-align: center;
@@ -28,13 +60,65 @@
     .emails-section {
       padding: 0 0 80px;
     }
+
+    /* Email header — flat layout, no accordion grid */
+    .email-header {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      cursor: default;
+    }
+    .email-toggle { display: none; }
+
+    /* Email header meta row (Send To / When) */
+    .email-header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+    }
+    .email-meta-item {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.4);
+    }
+    .email-meta-item strong {
+      color: rgba(255,255,255,0.65);
+      font-weight: 600;
+    }
+    /* Orange email num badge + type label */
+    .email-num {
+      background: rgba(208,79,43,0.15);
+      color: #D04F2B;
+    }
+    .email-type {
+      color: #D04F2B;
+    }
+    /* White labels for SL / Preview rows, SL label matches content size */
+    .email-subject strong {
+      color: #fff;
+      font-size: 0.93rem;
+    }
+    .email-preview-text strong {
+      color: #fff;
+    }
+    /* PS / sig same color as body text */
+    .email-body .email-sig {
+      color: rgba(255,255,255,0.75);
+    }
+    .alt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 24px;
+    }
+    .alt-row .email-preview-text {
+      flex-shrink: 0;
+      color: #fff;
+    }
+
     /* Show all email bodies fully expanded */
     .email-body-wrap {
       max-height: none !important;
       overflow: visible !important;
     }
-    .email-header { cursor: default; }
-    .email-toggle { display: none; }
     .email-body a { color: #3B82F6; text-decoration: underline; }
     .email-body .email-quote-center {
       text-align: center;
@@ -65,39 +149,17 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
-    .email-header-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 16px;
-      margin-bottom: 12px;
-    }
-    .email-meta-item {
-      font-size: 11.5px;
-      color: rgba(255,255,255,0.4);
-    }
-    .email-meta-item strong {
-      color: rgba(255,255,255,0.65);
-      font-weight: 600;
-    }
     .email-note {
       text-align: center;
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.6);
       margin-top: 40px;
       font-style: italic;
     }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255,255,255,0.45);
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-decoration: none;
-      margin-bottom: 40px;
-      transition: color 0.2s;
+
+    @media (max-width: 480px) {
+      .back-link { font-size: 0.78rem; right: 16px; }
     }
-    .back-link:hover { color: rgba(255,255,255,0.8); }
   </style>
 </head>
 <body>
@@ -112,6 +174,7 @@
           <div class="logo-sub">ACQUISITION</div>
         </div>
       </a>
+      <a href="funnel.html" class="back-link" onclick="event.preventDefault(); history.back();">← Back to walkthrough</a>
     </div>
   </nav>
 
@@ -119,7 +182,7 @@
   <section class="emails-hero">
     <div class="container">
       <h1>The Full Email Sequence</h1>
-      <p>Segment 2 — Dads with kids aged 5–12. Every word unchanged from the client deliverable.</p>
+      <p>Segment 2 — Dads with kids aged 5–12.</p>
     </div>
   </section>
 
@@ -127,7 +190,7 @@
   <section class="emails-section email-previews">
     <div class="container">
 
-      <a href="funnel.html" class="back-link">← Back to walkthrough</a>
+      <p class="email-note" style="margin-bottom:24px; font-size:0.72rem; max-width:420px; margin-left:auto; margin-right:auto;"><strong style="color:#fff;">BEFORE YOU READ:</strong> "Alex" is a placeholder. In live deployment, each subscriber's real name is inserted automatically by the email platform.</p>
 
       <div class="email-stack">
 
@@ -144,13 +207,16 @@
             </div>
             <div class="email-subject"><strong>SL:</strong> Your Stolen Minutes Method is here, Alex</div>
             <div class="email-preview-text"><strong>Preview:</strong> Free fitness guide for dads with active kids</div>
+            <div class="alt-row">
+              <div class="email-preview-text"><strong>Alt SL:</strong> You signed up for this, Alex?</div>
+            </div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
               <p>Hey Alex,</p>
               <p>I went through your quiz answers…</p>
               <p>And I believe this is the exact guide you've been looking for:</p>
-              <p><a href="#">Click here to download The Stolen Minutes Method: Train Smarter Around Your Kids' Schedule.</a></p>
+              <p><a href="javascript:void(0)">Click here to download The Stolen Minutes Method: Train Smarter Around Your Kids' Schedule.</a></p>
               <p><strong>Now, before you dig in…</strong></p>
               <p>I want to make sure you don't miss what's coming next.</p>
               <p>You just joined a group of dads who decided their kids deserve to see them at their best, not just hear about it.</p>
@@ -193,6 +259,9 @@
             </div>
             <div class="email-subject"><strong>SL:</strong> "Dad bod" to "Fit dad" without missing their game</div>
             <div class="email-preview-text"><strong>Preview:</strong> My story</div>
+            <div class="alt-row">
+              <div class="email-preview-text"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
+            </div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
@@ -252,7 +321,7 @@
           <div class="email-header">
             <div class="email-meta">
               <span class="email-num">Email 3</span>
-              <span class="email-type">Value + Product Aware</span>
+              <span class="email-type">Value</span>
             </div>
             <div class="email-header-meta">
               <span class="email-meta-item"><strong>Send To:</strong> Segment 2: Dads with 5–12 y/o</span>
@@ -260,6 +329,10 @@
             </div>
             <div class="email-subject"><strong>SL:</strong> Your kids' sport schedule predicts your fitness plan</div>
             <div class="email-preview-text"><strong>Preview:</strong> Here's how to avoid the crash</div>
+            <div class="alt-row">
+              <div class="email-preview-text"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
+              <div class="email-preview-text"><strong>Alt Preview:</strong> Read this to find out…</div>
+            </div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
@@ -283,7 +356,7 @@
               <p>So if you want to know how to make sure your life and plan are actually in sync…</p>
               <p>So you can finally get back in shape, keep up with your kids on the field without getting gassed and stop starting over every few weeks.</p>
               <p>I put together a free training that breaks everything down for dads exactly like us.</p>
-              <p><a href="#">Watch it here.</a></p>
+              <p><a href="javascript:void(0)">Watch it here.</a></p>
               <p>Inside, you'll find:</p>
               <ol>
                 <li>How to quickly spot the hidden training windows already baked into your current week.</li>
@@ -293,7 +366,7 @@
               <p>These are the fundamentals.</p>
               <p>Once you get a clear idea of how and when to use them, sticking to your plan stops being a willpower problem.</p>
               <p>Combine this with the Stolen Minutes Method you already have, and you'll have a sustainable approach to hit your goal.</p>
-              <div class="email-sig">Talk soon,<br>Mike<br><br>P.S. Most of the dads I work with started where you are. Once we stopped fighting the "dad life" schedule and started working with it, things just clicked.<br><br>If you want the same high-level accountability and a hand getting your system in place, <a href="#">go here to see if we're a fit.</a></div>
+              <div class="email-sig">Talk soon,<br>Mike<br><br>P.S. Most of the dads I work with started where you are. Once we stopped fighting the "dad life" schedule and started working with it, things just clicked.<br><br>If you want the same high-level accountability and a hand getting your system in place, <a href="javascript:void(0)">go here to see if we're a fit.</a></div>
             </div>
           </div>
         </div>
@@ -354,15 +427,13 @@
               <p>I read every one myself. If I think I can help you (and I'm only taking dads I know I can get results for), we'll hop on a quick call to map it out.</p>
               <p>If it's a fit, we start that week.</p>
               <p>If it's not, I'll point you to something that might be a better match.</p>
-              <p><a href="#">Apply here.</a></p>
+              <p><a href="javascript:void(0)">Apply here.</a></p>
               <div class="email-sig">Talk soon,<br>Mike.<br><br><em>P.S. If you've read this far and you're still telling yourself you'll start once you feel more ready… read the first half of this email again. You can afford to take care of yourself, you can't afford to waste time.</em></div>
             </div>
           </div>
         </div>
 
       </div><!-- /email-stack -->
-
-      <p class="email-note">"Alex" is a first-name placeholder. In live deployment, each subscriber's real name is inserted automatically by the email platform.</p>
 
     </div>
   </section>
