@@ -817,6 +817,18 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   line-height: 1.5;
 }
 
+/* ---- Google Form Embed ---- */
+.gform-wrap {
+  margin-top: 36px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gform-wrap iframe {
+  display: block;
+  border: none;
+  border-radius: 12px;
+}
+
 /* ---- Audit Section ---- */
 .audit-section {
   background: var(--navy);
