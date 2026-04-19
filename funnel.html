@@ -3,11 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Back in Shape — LOGICUS ACQUISITION Demo Funnel</title>
+  <title>How It Works — LOGICUS ACQUISITION</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Walkthrough Hero ── */
+    .walkthrough-hero {
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .walkthrough-hero .hero-label { margin-bottom: 16px; }
+    .walkthrough-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .walkthrough-hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Step Nav ── */
+    .walkthrough-section { padding: 0 0 80px; }
+    .step-nav {
+      display: flex;
+      align-items: center;
+      margin-bottom: 48px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .step-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .step-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s;
+    }
+    .step-btn.active .step-num {
+      background: #2563EB;
+      border-color: #2563EB;
+      color: #fff;
+      box-shadow: 0 0 16px rgba(37,99,235,0.5);
+    }
+    .step-btn.active .step-label { color: #fff; }
+    .step-btn:hover:not(.active) .step-num { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.6); }
+    .step-connector {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      min-width: 24px;
+      margin: 0 4px;
+      margin-bottom: 22px;
+    }
+
+    /* ── Step Panels ── */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+    .step-panel-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .step-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #2563EB;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .step-panel h2 {
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .step-panel p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .step-panel p:last-child { margin-bottom: 0; }
+
+    /* ── Demo Cards ── */
+    .step-demo-card {
+      background: #07070A;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.2), 0 16px 48px rgba(37,99,235,0.2);
+    }
+    .demo-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+
+    /* Quiz demo */
+    .demo-quiz-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .demo-options { display: flex; flex-direction: column; gap: 10px; }
+    .demo-option {
+      padding: 11px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.03);
+    }
+    .demo-option.highlighted {
+      border-color: #2563EB;
+      background: rgba(37,99,235,0.12);
+      color: #fff;
+    }
+
+    /* Segment demo */
+    .demo-segments { display: flex; gap: 10px; }
+    .demo-seg {
+      flex: 1;
+      text-align: center;
+      padding: 14px 10px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+    .demo-seg small { display: block; font-weight: 400; font-size: 10.5px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+    .demo-seg.seg-1 { border-color: rgba(245,158,11,0.3); color: #FCD34D; }
+    .demo-seg.seg-2 {
+      border-color: #3B82F6;
+      background: rgba(59,130,246,0.12);
+      color: #93C5FD;
+      box-shadow: 0 0 16px rgba(59,130,246,0.3);
+    }
+    .demo-seg.seg-2 small { color: rgba(147,197,253,0.6); }
+    .demo-seg.seg-3 { border-color: rgba(244,63,94,0.3); color: #FDA4AF; }
+
+    /* Lead magnet demo */
+    .demo-magnet {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .demo-magnet-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .demo-magnet-sub {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+    }
+    .demo-magnet-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(59,130,246,0.2);
+      color: #93C5FD;
+      letter-spacing: 0.04em;
+    }
+
+    /* Email list demo */
+    .demo-email-list { display: flex; flex-direction: column; gap: 10px; }
+    .demo-email-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .demo-email-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.25);
+      border: 1px solid rgba(37,99,235,0.5);
+      color: #93C5FD;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .demo-email-time {
+      margin-left: auto;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+
+    /* Offer demo */
+    .demo-offer-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .demo-offer-items { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .demo-offer-item {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .demo-offer-cta {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #D04F2B;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Step nav mobile */
+    @media (max-width: 768px) {
+      .step-panel-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .step-demo-card { order: -1; }
+      .demo-segments { flex-direction: column; }
+    }
+
+    /* ── Email showcase overrides for funnel page ── */
+    .email-header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin-bottom: 12px;
+    }
+    .email-meta-item {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.4);
+    }
+    .email-meta-item strong {
+      color: rgba(255,255,255,0.65);
+      font-weight: 600;
+    }
+    .email-body a { color: #3B82F6; text-decoration: underline; }
+    .email-body .email-quote-center {
+      text-align: center;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 1.05rem;
+      margin: 8px 0 16px;
+      color: #fff;
+    }
+    .email-body .dash-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 16px 16px;
+    }
+    .email-body .dash-list li::before {
+      content: "– ";
+      color: rgba(255,255,255,0.4);
+    }
+    .email-body .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .email-body .check-list li {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,232 +343,182 @@
   </nav>
 
   <!-- ======================== HERO ======================== -->
-  <section class="funnel-hero">
+  <section class="walkthrough-hero">
     <div class="container">
-      <div class="hero-label">The Visible Dad Challenge</div>
-      <h1>Finally get back in shape —<br>even with a house full of wild kids</h1>
-      <p>Your kids are watching. This quiz matches you with the right starting point — based on your actual schedule, not a generic plan.</p>
+      <div class="hero-label">Live Portfolio Demo</div>
+      <h1>The Full Funnel, Step by Step</h1>
+      <p>A real client build. Walk through each stage — from the first click to the coaching offer — and see exactly what gets delivered at every step.</p>
     </div>
   </section>
 
-  <!-- ======================== COPY BLOCK ======================== -->
-  <div class="funnel-copy">
-    <div class="funnel-copy-inner">
-      <p>Between the school runs, the late nights, and the "I'll start Monday" cycles — most dads end up last on their own list.</p>
-      <p>Here's the thing: <strong>your kids are already forming opinions.</strong> About what a man looks like when things get hard. About whether dad follows through. About what it means to take care of yourself.</p>
-      <p>The way you show up for yourself is the template they'll carry — permanently.</p>
-      <p>This isn't a generic fitness program. Answer 4 quick questions and we'll match you with the right guide and starting point for your exact situation.</p>
-    </div>
-  </div>
-
-  <!-- ======================== QUIZ ======================== -->
-  <section class="quiz-section">
+  <!-- ======================== WALKTHROUGH ======================== -->
+  <section class="walkthrough-section">
     <div class="container">
-      <div class="quiz-wrap">
 
-        <!-- Progress bar -->
-        <div class="quiz-progress-bar">
-          <div class="quiz-progress-fill" style="width: 25%;"></div>
+      <!-- Step nav -->
+      <div class="step-nav">
+        <button class="step-btn active" onclick="showStep(1)">
+          <span class="step-num">1</span>
+          <span class="step-label">Traffic</span>
+        </button>
+        <div class="step-connector"></div>
+        <button class="step-btn" onclick="showStep(2)">
+          <span class="step-num">2</span>
+          <span class="step-label">Quiz</span>
+        </button>
+        <div class="step-connector"></div>
+        <button class="step-btn" onclick="showStep(3)">
+          <span class="step-num">3</span>
+          <span class="step-label">Segment</span>
+        </button>
+        <div class="step-connector"></div>
+        <button class="step-btn" onclick="showStep(4)">
+          <span class="step-num">4</span>
+          <span class="step-label">Emails</span>
+        </button>
+        <div class="step-connector"></div>
+        <button class="step-btn" onclick="showStep(5)">
+          <span class="step-num">5</span>
+          <span class="step-label">Offer</span>
+        </button>
+      </div>
+
+      <!-- Step panels -->
+      <div class="step-panels">
+
+        <!-- Step 1 -->
+        <div class="step-panel active" data-step="1">
+          <div class="step-panel-inner">
+            <div class="step-text">
+              <div class="step-tag">Step 1</div>
+              <h2>Traffic hits a landing page with a quiz</h2>
+              <p>Paid or organic traffic lands on a page built around one question: <em>who is this lead, really?</em></p>
+              <p>Instead of a generic opt-in form, they're walked through a short quiz that collects the data needed to serve them something specific — not something broadcast to everyone.</p>
+            </div>
+            <div class="step-demo-card">
+              <div class="demo-label">Landing Page — Quiz</div>
+              <div class="demo-quiz-q">How old are your kids?</div>
+              <div class="demo-options">
+                <div class="demo-option">Under 5 years old</div>
+                <div class="demo-option highlighted">5 to 12 years old ✓</div>
+                <div class="demo-option">13 and older</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Quiz card -->
-        <div class="quiz-card">
-
-          <!-- ─── Step 1: Kids' ages (THE segmentation question) ─── -->
-          <div class="quiz-step active" data-step="1" data-id="kids_age">
-            <div class="quiz-q">How old are your kids?</div>
-            <div class="quiz-hint">This is the main factor in what we send you — each age range has a completely different guide and sequence.</div>
-            <div class="quiz-options">
-              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '1')">
-                <input type="radio" name="kids_age" value="1"> Under 5 years old
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '2')">
-                <input type="radio" name="kids_age" value="2"> 5 to 12 years old
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'kids_age', '3')">
-                <input type="radio" name="kids_age" value="3"> 13 and older
-              </label>
+        <!-- Step 2 -->
+        <div class="step-panel" data-step="2">
+          <div class="step-panel-inner">
+            <div class="step-text">
+              <div class="step-tag">Step 2</div>
+              <h2>Answers determine the segment</h2>
+              <p>The primary signal is kids' age range. Each group has different psychology, schedule constraints, and parenting pressures — so each gets a completely different funnel.</p>
+              <p>Secondary answers (challenge type, consistency level, main goal) further personalize the copy within the segment.</p>
+            </div>
+            <div class="step-demo-card">
+              <div class="demo-label">Segmentation Output</div>
+              <div class="demo-segments">
+                <div class="demo-seg seg-1">Segment 1<small>Kids under 5</small></div>
+                <div class="demo-seg seg-2">Segment 2<small>Kids 5–12 ✓</small></div>
+                <div class="demo-seg seg-3">Segment 3<small>Kids 13+</small></div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- ─── Step 2: Biggest challenge ─── -->
-          <div class="quiz-step" data-step="2" data-id="challenge">
-            <div class="quiz-q">What's your biggest challenge right now?</div>
-            <div class="quiz-options">
-              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'a')">
-                <input type="radio" name="challenge" value="a"> I don't have enough time
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'b')">
-                <input type="radio" name="challenge" value="b"> I have the time, but no energy left by then
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'c')">
-                <input type="radio" name="challenge" value="c"> I keep starting over and losing momentum
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'challenge', 'd')">
-                <input type="radio" name="challenge" value="d"> I don't know what to actually do
-              </label>
+        <!-- Step 3 -->
+        <div class="step-panel" data-step="3">
+          <div class="step-panel-inner">
+            <div class="step-text">
+              <div class="step-tag">Step 3</div>
+              <h2>Each segment gets a matched lead magnet</h2>
+              <p>No two segments receive the same guide. Each lead magnet is written for the exact situation of that segment — different title, different framing, different content.</p>
+              <p>The delivery email also references their quiz answers, so the experience feels personal from the very first message they open.</p>
+            </div>
+            <div class="step-demo-card">
+              <div class="demo-label">Segment 2 — Lead Magnet</div>
+              <div class="demo-magnet">
+                <div class="demo-magnet-title">The Stolen Minutes Method</div>
+                <div class="demo-magnet-sub">Train Smarter Around Your Kids' Schedule</div>
+                <div class="demo-magnet-tag">For dads with kids aged 5–12</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- ─── Step 3: Consistency ─── -->
-          <div class="quiz-step" data-step="3" data-id="consistency">
-            <div class="quiz-q">How consistent have you been with fitness in the last 6 months?</div>
-            <div class="quiz-options">
-              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'a')">
-                <input type="radio" name="consistency" value="a"> Pretty consistent — 3+ times a week
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'b')">
-                <input type="radio" name="consistency" value="b"> On and off — a few times a month
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'c')">
-                <input type="radio" name="consistency" value="c"> I keep meaning to restart
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'consistency', 'd')">
-                <input type="radio" name="consistency" value="d"> Basically nothing — life just took over
-              </label>
+        <!-- Step 4 -->
+        <div class="step-panel" data-step="4">
+          <div class="step-panel-inner">
+            <div class="step-text">
+              <div class="step-tag">Step 4</div>
+              <h2>A tailored email sequence does the nurturing</h2>
+              <p>Four emails go out to Segment 2, spaced and sequenced to build trust, deliver value, and move the lead toward the offer — without sounding like a broadcast blast.</p>
+              <p>Scroll down to read every email in full, word for word.</p>
+              <a href="#email-showcase" class="btn btn-coral" style="margin-top:16px;">Read the full sequence <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style="flex-shrink:0"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M7 10h5.5M10 7.5l2.5 2.5-2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="step-demo-card">
+              <div class="demo-label">Email Sequence — Segment 2</div>
+              <div class="demo-email-list">
+                <div class="demo-email-row">
+                  <span class="demo-email-num">1</span>
+                  <span>Lead Magnet Delivery</span>
+                  <span class="demo-email-time">Immediately</span>
+                </div>
+                <div class="demo-email-row">
+                  <span class="demo-email-num">2</span>
+                  <span>Trainer's Story</span>
+                  <span class="demo-email-time">+5 min</span>
+                </div>
+                <div class="demo-email-row">
+                  <span class="demo-email-num">3</span>
+                  <span>Value + Product Aware</span>
+                  <span class="demo-email-time">Day 2</span>
+                </div>
+                <div class="demo-email-row">
+                  <span class="demo-email-num">4</span>
+                  <span>Direct Sale</span>
+                  <span class="demo-email-time">Day 4</span>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- ─── Step 4: Main goal ─── -->
-          <div class="quiz-step" data-step="4" data-id="goal">
-            <div class="quiz-q">What's your main goal?</div>
-            <div class="quiz-options">
-              <label class="quiz-option" onclick="selectOption(this, 'goal', 'a')">
-                <input type="radio" name="goal" value="a"> Lose weight and look better
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'goal', 'b')">
-                <input type="radio" name="goal" value="b"> More energy to keep up with my kids
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'goal', 'c')">
-                <input type="radio" name="goal" value="c"> Build real strength and feel strong again
-              </label>
-              <label class="quiz-option" onclick="selectOption(this, 'goal', 'd')">
-                <input type="radio" name="goal" value="d"> Honestly, all of the above
-              </label>
+        <!-- Step 5 -->
+        <div class="step-panel" data-step="5">
+          <div class="step-panel-inner">
+            <div class="step-text">
+              <div class="step-tag">Step 5</div>
+              <h2>The offer lands at the right moment</h2>
+              <p>By Email 4, the lead has received a lead magnet, heard the trainer's personal story, gotten specific value on their problem, and been shown the pattern in their own behavior.</p>
+              <p>The coaching offer isn't a cold pitch. It arrives after trust is built — timed to the exact moment the lead is most primed to say yes.</p>
+            </div>
+            <div class="step-demo-card">
+              <div class="demo-label">The Coaching Offer</div>
+              <div class="demo-offer">
+                <div class="demo-offer-title">1-on-1 Coaching with Mike</div>
+                <div class="demo-offer-items">
+                  <div class="demo-offer-item">☑️ Custom training blueprint</div>
+                  <div class="demo-offer-item">☑️ Done-for-you decision system</div>
+                  <div class="demo-offer-item">☑️ Direct access to coach</div>
+                  <div class="demo-offer-item">☑️ Ongoing plan adjustments</div>
+                </div>
+                <div class="demo-offer-cta">Apply here →</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- ─── Footer row: back / progress / submit ─── -->
-          <div class="quiz-footer">
-            <button id="back-btn" class="quiz-back-btn" onclick="goBack()" data-hidden="true">← Back</button>
-            <span class="quiz-progress-text">Question 1 of 4</span>
-            <span id="quiz-hint" class="quiz-continue-hint">tap an answer to continue</span>
-            <div id="submit-wrap" style="display: none;">
-              <button id="submit-btn" class="btn btn-coral" onclick="submitQuiz()" disabled>Get my guide →</button>
-            </div>
-          </div>
-
-        </div><!-- /quiz-card -->
-
-        <p style="text-align:center; font-size:0.78rem; color:var(--gray); margin-top:16px;">
-          No email required to take the quiz. You'll enter your details on the next page.
-        </p>
-
-      </div><!-- /quiz-wrap -->
+      </div><!-- /step-panels -->
     </div>
   </section>
 
-  <!-- ======================== HOW IT WORKS ======================== -->
-  <section class="how-it-works">
-    <div class="container">
-      <h2>How It Works</h2>
-      <p class="section-sub">Every lead enters the same door. What they see next is built for them — their segment, their lead magnet, their email sequence.</p>
-
-      <div class="diagram-wrap">
-        <!-- SVG MIND MAP — viewBox 1060×380 -->
-        <svg viewBox="0 0 1060 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Funnel flow diagram">
-          <defs>
-            <marker id="arr-gray"   viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="rgba(255,255,255,0.25)"/>
-            </marker>
-            <marker id="arr-amber"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F59E0B"/>
-            </marker>
-            <marker id="arr-blue"   viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3B82F6"/>
-            </marker>
-            <marker id="arr-rose"   viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F43F5E"/>
-            </marker>
-            <filter id="glow-amber" x="-35%" y="-35%" width="170%" height="170%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#F59E0B" flood-opacity="0.55"/>
-            </filter>
-            <filter id="glow-blue" x="-35%" y="-35%" width="170%" height="170%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#3B82F6" flood-opacity="0.55"/>
-            </filter>
-            <filter id="glow-rose" x="-35%" y="-35%" width="170%" height="170%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#F43F5E" flood-opacity="0.55"/>
-            </filter>
-            <filter id="glow-purple" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#8B5CF6" flood-opacity="0.65"/>
-            </filter>
-          </defs>
-          <text x="137" y="24" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-weight="700" letter-spacing="1.8" font-family="Inter,sans-serif">ENTRY</text>
-          <text x="363" y="24" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-weight="700" letter-spacing="1.8" font-family="Inter,sans-serif">OFFER</text>
-          <text x="570" y="24" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-weight="700" letter-spacing="1.8" font-family="Inter,sans-serif">SEGMENT</text>
-          <text x="780" y="24" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-weight="700" letter-spacing="1.8" font-family="Inter,sans-serif">NURTURE</text>
-          <text x="985" y="24" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-weight="700" letter-spacing="1.8" font-family="Inter,sans-serif">CONVERT</text>
-          <line x1="30" y1="33" x2="1040" y2="33" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-          <path d="M 120 200 L 138 200" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" marker-end="url(#arr-gray)"/>
-          <path d="M 258 200 L 278 200" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" marker-end="url(#arr-gray)"/>
-          <path d="M 448 200 L 475 200 L 475 100 L 508 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-amber)" opacity="0.75"/>
-          <path d="M 448 200 L 508 200"                     stroke="#3B82F6" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"  opacity="0.75"/>
-          <path d="M 448 200 L 475 200 L 475 300 L 508 300" stroke="#F43F5E" stroke-width="1.5" fill="none" marker-end="url(#arr-rose)"  opacity="0.75"/>
-          <path d="M 632 100 L 648 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-amber)" opacity="0.75"/>
-          <path d="M 632 200 L 648 200" stroke="#3B82F6" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"  opacity="0.75"/>
-          <path d="M 632 300 L 648 300" stroke="#F43F5E" stroke-width="1.5" fill="none" marker-end="url(#arr-rose)"  opacity="0.75"/>
-          <path d="M 772 100 L 786 100" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-amber)" opacity="0.75"/>
-          <path d="M 772 200 L 786 200" stroke="#3B82F6" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"  opacity="0.75"/>
-          <path d="M 772 300 L 786 300" stroke="#F43F5E" stroke-width="1.5" fill="none" marker-end="url(#arr-rose)"  opacity="0.75"/>
-          <path d="M 910 100 L 934 100 L 934 200 L 935 200" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arr-amber)" opacity="0.75"/>
-          <path d="M 910 200 L 935 200"                     stroke="#3B82F6" stroke-width="1.5" fill="none" marker-end="url(#arr-blue)"  opacity="0.75"/>
-          <path d="M 910 300 L 934 300 L 934 200 L 935 200" stroke="#F43F5E" stroke-width="1.5" fill="none" marker-end="url(#arr-rose)"  opacity="0.75"/>
-          <rect x="20" y="178" width="100" height="44" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
-          <text x="70" y="196" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="11" font-weight="600" font-family="Inter,sans-serif">Traffic</text>
-          <text x="70" y="212" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9.5" font-family="Inter,sans-serif">Ad · Organic</text>
-          <rect x="140" y="178" width="118" height="44" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
-          <text x="199" y="196" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="11" font-weight="600" font-family="Inter,sans-serif">Landing Page</text>
-          <text x="199" y="212" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9.5" font-family="Inter,sans-serif">+ Quiz</text>
-          <rect x="280" y="178" width="168" height="44" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
-          <text x="364" y="196" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="11" font-weight="600" font-family="Inter,sans-serif">Upsell / OTO</text>
-          <text x="364" y="212" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9.5" font-family="Inter,sans-serif">One-Time Offer</text>
-          <rect x="508" y="76" width="124" height="48" rx="10" fill="rgba(245,158,11,0.14)" stroke="#F59E0B" stroke-width="1.5" filter="url(#glow-amber)"/>
-          <text x="570" y="104" text-anchor="middle" fill="#FCD34D" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 1</text>
-          <rect x="508" y="176" width="124" height="48" rx="10" fill="rgba(59,130,246,0.14)" stroke="#3B82F6" stroke-width="1.5" filter="url(#glow-blue)"/>
-          <text x="570" y="204" text-anchor="middle" fill="#93C5FD" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 2</text>
-          <rect x="508" y="276" width="124" height="48" rx="10" fill="rgba(244,63,94,0.14)" stroke="#F43F5E" stroke-width="1.5" filter="url(#glow-rose)"/>
-          <text x="570" y="304" text-anchor="middle" fill="#FDA4AF" font-size="11" font-weight="700" font-family="Inter,sans-serif">Segment 3</text>
-          <rect x="648" y="78" width="124" height="44" rx="8" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
-          <text x="710" y="96"  text-anchor="middle" fill="#FCD34D" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="112" text-anchor="middle" fill="rgba(245,158,11,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
-          <rect x="648" y="178" width="124" height="44" rx="8" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
-          <text x="710" y="196" text-anchor="middle" fill="#93C5FD" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="212" text-anchor="middle" fill="rgba(59,130,246,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 2</text>
-          <rect x="648" y="278" width="124" height="44" rx="8" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.4)" stroke-width="1.5"/>
-          <text x="710" y="296" text-anchor="middle" fill="#FDA4AF" font-size="11" font-weight="600" font-family="Inter,sans-serif">Lead Magnet</text>
-          <text x="710" y="312" text-anchor="middle" fill="rgba(244,63,94,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
-          <rect x="786" y="78" width="124" height="44" rx="8" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
-          <text x="848" y="96"  text-anchor="middle" fill="#FCD34D" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="848" y="112" text-anchor="middle" fill="rgba(245,158,11,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 1</text>
-          <rect x="786" y="178" width="124" height="44" rx="8" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
-          <text x="848" y="196" text-anchor="middle" fill="#93C5FD" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="848" y="212" text-anchor="middle" fill="rgba(59,130,246,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 2</text>
-          <rect x="786" y="278" width="124" height="44" rx="8" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.4)" stroke-width="1.5"/>
-          <text x="848" y="296" text-anchor="middle" fill="#FDA4AF" font-size="11" font-weight="600" font-family="Inter,sans-serif">5-Email Seq.</text>
-          <text x="848" y="312" text-anchor="middle" fill="rgba(244,63,94,0.55)" font-size="9.5" font-family="Inter,sans-serif">Segment 3</text>
-          <rect x="935" y="178" width="90" height="44" rx="10" fill="rgba(139,92,246,0.18)" stroke="#8B5CF6" stroke-width="2" filter="url(#glow-purple)"/>
-          <text x="980" y="196" text-anchor="middle" fill="#C4B5FD" font-size="11" font-weight="700" font-family="Inter,sans-serif">Coaching</text>
-          <text x="980" y="212" text-anchor="middle" fill="rgba(139,92,246,0.75)" font-size="9.5" font-family="Inter,sans-serif">Offer</text>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== EMAIL PREVIEWS ======================== -->
-  <section class="email-previews">
+  <!-- ======================== EMAIL SHOWCASE ======================== -->
+  <section class="email-previews" id="email-showcase">
     <div class="container">
       <h2>Inside the Sequence</h2>
-      <p class="section-sub">5 emails that go out to "Dads with kids 5–12" after they opt in. Each one moves them closer to a buying decision — without sounding like a broadcast blast.</p>
+      <p class="section-sub">The full 4-email sequence for Segment 2 — dads with kids aged 5–12. Every word, unchanged from the client deliverable. Click each email to read it in full.</p>
 
       <div class="email-stack">
 
@@ -262,8 +529,12 @@
               <span class="email-num">Email 1</span>
               <span class="email-type">Lead Magnet Delivery</span>
             </div>
+            <div class="email-header-meta">
+              <span class="email-meta-item"><strong>Send To:</strong> Segment 2 — Dads with 5–12 y/o</span>
+              <span class="email-meta-item"><strong>When:</strong> Immediately on sign-up</span>
+            </div>
             <div class="email-subject"><strong>SL:</strong> Your Stolen Minutes Method is here, Alex</div>
-            <div class="email-preview-text">Preview: Free fitness guide for dads with active kids</div>
+            <div class="email-preview-text"><strong>Preview:</strong> Free fitness guide for dads with active kids</div>
             <div class="email-toggle">▼</div>
           </div>
           <div class="email-body-wrap">
@@ -271,23 +542,32 @@
               <p>Hey Alex,</p>
               <p>I went through your quiz answers…</p>
               <p>And I believe this is the exact guide you've been looking for:</p>
-              <p><strong>→ Click here to download The Stolen Minutes Method: Train Smarter Around Your Kids' Schedule.</strong></p>
-              <p>Now, before you dig in… I want to make sure you don't miss what's coming next.</p>
-              <p>You just joined a group of dads who decided their kids deserve to see them at their best, not just hear about it. Over the next few days, I'll send more resources to help you:</p>
+              <p><a href="#">Click here to download The Stolen Minutes Method: Train Smarter Around Your Kids' Schedule.</a></p>
+              <p><strong>Now, before you dig in…</strong></p>
+              <p>I want to make sure you don't miss what's coming next.</p>
+              <p>You just joined a group of dads who decided their kids deserve to see them at their best, not just hear about it.</p>
+              <p>And over the next few days, I'll send more resources to help you:</p>
               <ul>
                 <li>Train on the days you only have 12 minutes and a patch of floor</li>
                 <li>Know exactly what to do when you're running on 5 hours of sleep and cold coffee</li>
                 <li>Stop losing momentum every time the family schedule blows up</li>
                 <li>And more.</li>
               </ul>
-              <p>One thing though… Email providers love burying these in promotions or spam. To stay up-to-date with all my free resources:</p>
+              <p>One thing though…</p>
+              <p>Email providers love <u><em>burying</em></u> these in promotions or spam.</p>
+              <p>So to stay up-to-date with all my free resources and early access to my 1-on-1 training…</p>
+              <p>Make sure to follow the steps below (it takes less than 30 seconds):</p>
               <ol>
                 <li>Add my email to your contact list.</li>
                 <li>Drag this email to your Primary inbox if it isn't there already.</li>
-                <li>Reply "Done" so I know you did it.</li>
+                <li>Reply "Done" to this email so I know you did it.</li>
               </ol>
-              <p>In the next email, I'll share how I went from being the tired dad my wife and kids worried about, to becoming the present dad they're proud of.</p>
-              <div class="email-sig">Talk soon,<br><strong>Mike.</strong></div>
+              <p>Do this now, and you won't miss a thing.</p>
+              <p>In the next email, I'll share how I went from being the tired dad my wife and kids worried about to becoming the present dad they're proud of.</p>
+              <p>Plus the key lessons I wish I'd learned before they became teenagers.</p>
+              <p>But for now?</p>
+              <p>Enjoy the guide… and keep an eye out for my next email</p>
+              <div class="email-sig">Talk soon,<br>Mike.</div>
             </div>
           </div>
         </div>
@@ -299,26 +579,63 @@
               <span class="email-num">Email 2</span>
               <span class="email-type">Trainer's Story</span>
             </div>
+            <div class="email-header-meta">
+              <span class="email-meta-item"><strong>Send To:</strong> Segment 2 — Dads with 5–12 y/o</span>
+              <span class="email-meta-item"><strong>When:</strong> 5 minutes after Email 1</span>
+            </div>
             <div class="email-subject"><strong>SL:</strong> "Dad bod" to "Fit dad" without missing their game</div>
-            <div class="email-preview-text">Preview: My story</div>
+            <div class="email-preview-text"><strong>Preview:</strong> My story</div>
             <div class="email-toggle">▼</div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
               <p>Alex,</p>
-              <p>If you've ever stared at your calendar on a Sunday night… made a promise to yourself that this week would be different… and then watched Wednesday roll around without a single workout done…</p>
+              <p>If you've ever stared at your calendar on a Sunday night…</p>
+              <p>Made a promise to yourself that this week would be different…</p>
+              <p>And then watched Wednesday roll around without a single workout done…</p>
               <p>You're not alone.</p>
-              <p>I was that guy for almost three years. I used to be in decent shape — athletic enough in my 20s that I never really had to think about it. Then work got serious. The kids came. Life got full.</p>
-              <p>And somewhere between the school runs and the late nights and the "I'll start Monday" cycles, I just let myself go. I told myself it was fine. I was busy. I was a dad. That's what happens.</p>
-              <p>But here's the part I didn't want to admit: I wasn't just out of shape. I was tired all the time. I'd come home drained, and my kids — who just wanted to wrestle and run and play — got the version of me that was already out of gas by 6pm.</p>
-              <p>Then one evening… my son, he was 9 at the time, asked me why I never ran with him at the park anymore. Not in a mean way. He was just… curious.</p>
-              <p>But it hit me like a truck. Because I didn't have a good answer.</p>
-              <p>That's when I realized: the problem wasn't discipline. Wasn't motivation. Wasn't even time.</p>
-              <p><strong>The real problem was that I had convinced myself that taking care of myself was somehow taking away from my family. When the truth is the opposite.</strong></p>
-              <p>Your kids aged 5 to 12 are in the middle of figuring out what a man looks like. What a father looks like. They're watching how you handle hard things. How you treat your body. Whether you follow through.</p>
-              <p>The day I stopped treating fitness as something I did <em>instead of</em> being a dad — and started seeing it as part of how I showed up as one — everything changed.</p>
+              <p>I was that guy for almost three years.</p>
+              <p>I used to be in decent shape. Athletic enough in my 20s that I never really had to think about it.</p>
+              <p>Then work got serious.</p>
+              <p>The kids came.</p>
+              <p>Life got full.</p>
+              <p>And somewhere between the school runs and the late nights and the "I'll start Monday" cycles, I just let myself go.</p>
+              <p>I told myself it was fine. I was busy. I was a dad. <em>That's what happens.</em></p>
+              <p>But here's the part I didn't want to admit:</p>
+              <p>I wasn't just out of shape. I was tired all the time.</p>
+              <p>I'd come home drained, and my kids, who just wanted to wrestle and run and play, got the version of me that was already out of gas by 6pm.</p>
+              <p>I'd sit on the couch while they played in the yard.</p>
+              <p>I told myself they didn't notice.</p>
+              <p><strong>Then one evening… my son, he was 9 at the time, asked me why I never ran with him at the park anymore.</strong></p>
+              <p>Not in a mean way.</p>
+              <p>He was just… curious.</p>
+              <p>But it hit me like a truck.</p>
+              <p>Because I didn't have a good answer.</p>
+              <p>I tried everything after that.</p>
+              <ul class="dash-list">
+                <li>The gym membership I used for three weeks.</li>
+                <li>The YouTube workout phase.</li>
+                <li>The diet that lasted until Friday.</li>
+                <li>The "I'll be consistent this time" plan that was really no plan at all.</li>
+              </ul>
+              <p>Each time I actually started making progress, I'd feel guilty.</p>
+              <p>Like I was stealing time away from my family to go sweat in a garage.</p>
+              <p>So I'd quit. And feel worse.</p>
+              <p>That's when I realized the problem wasn't discipline.</p>
+              <p>Wasn't motivation. Wasn't even time.</p>
+              <p><strong>The real problem was that I had convinced myself that taking care of myself was somehow <em><strong>taking away</strong></em> from my family.</strong></p>
+              <p>When the truth is the opposite.</p>
+              <p><strong>Your kids aged 5 to 12 are in the middle of figuring out what a man looks like.</strong></p>
+              <p>What a father looks like.</p>
+              <p>They're watching how you handle hard things. How you treat your body. Whether you follow through.</p>
+              <p>You don't have to be perfect. You just have to be someone worth watching.</p>
+              <p><strong>The day I stopped treating fitness as something I did instead of being a dad, and started seeing it as <em><strong>part of how I showed up as one</strong></em>, everything changed.</strong></p>
+              <p>I stopped quitting.</p>
+              <p>I stopped feeling guilty.</p>
+              <p>And I finally started making progress that actually stuck.</p>
               <p>In a few days, I'll share the exact reason most dads in your position keep restarting, and the four things that finally made it click for me.</p>
-              <div class="email-sig">Talk soon,<br><strong>Mike.</strong><br><br><em>P.S. If anything in this email hits close to home, reply and let me know. I read every message.</em></div>
+              <p>It's not what you think.</p>
+              <div class="email-sig">Talk soon,<br>Mike.<br><br><strong>P.S.</strong> The system I eventually used <u><em><strong>wasn't</strong></em></u> the hardest one. It <u><em><strong>wasn't</strong></em></u> the most scientific. But it was built for a life that looks like yours, because it was designed by someone living it.<br><br><strong>If anything in this email hits close to home, reply and let me know. I read every message and I'll do my best to help.</strong></div>
             </div>
           </div>
         </div>
@@ -330,27 +647,47 @@
               <span class="email-num">Email 3</span>
               <span class="email-type">Value + Product Aware</span>
             </div>
+            <div class="email-header-meta">
+              <span class="email-meta-item"><strong>Send To:</strong> Segment 2 — Dads with 5–12 y/o</span>
+              <span class="email-meta-item"><strong>When:</strong> 1 day after Emails 1 &amp; 2</span>
+            </div>
             <div class="email-subject"><strong>SL:</strong> Your kids' sport schedule predicts your fitness plan</div>
-            <div class="email-preview-text">Preview: Here's how to avoid the crash</div>
+            <div class="email-preview-text"><strong>Preview:</strong> Here's how to avoid the crash</div>
             <div class="email-toggle">▼</div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
-              <p>Alex, believe it or not… I sometimes feel like a bit of a fortune teller.</p>
-              <p>Not the kind who can tell you if you should quit your job to start a business. But if you describe what a typical week looks like with your kids? I can usually tell — with pretty good accuracy — whether your fitness plan is actually going to stick this time.</p>
-              <p>It's not because I can see the future. It's because after talking to enough dads in the exact same boat, the pattern is too obvious.</p>
-              <p>Your routine and your fitness plan are either in sync… or not. It's as simple as checking the GPS on a road you've driven your whole life. If the plan doesn't match the actual roads you're on, it's going to crash no matter how motivated you are.</p>
-              <p>I'm not talking about some generic cookie-cutter workout plan. I'm talking about the right workout, at the right place and time, that gives you maximum results.</p>
-              <p>So if you want to make sure your life and plan are actually in sync… I put together a free training that breaks everything down for dads exactly like us.</p>
-              <p><strong>→ Watch it here.</strong></p>
+              <p>Alex, believe it or not…</p>
+              <p>I sometimes feel like a bit of a fortune teller.</p>
+              <p>Not the kind who can tell you if you should quit your job to start a business.</p>
+              <p>Or what's gonna be "the next bitcoin" in the 2030s.</p>
+              <p>But if you describe what a typical week looks like with your kids?</p>
+              <p>I can usually tell <em>(with pretty good accuracy)</em> whether your fitness plan is actually going to stick this time.</p>
+              <p>It's not because I can see the future.</p>
+              <p>It's because after talking to enough dads in the exact same boat, the pattern is too obvious.</p>
+              <p><strong>Your routine and your fitness plan are either in sync… or not.</strong></p>
+              <p>It's as simple as checking the GPS on a road you've driven your whole life.</p>
+              <p>If the plan doesn't match the actual roads you're on, it's going to crash no matter how motivated you are.</p>
+              <p>Now, here's the thing…</p>
+              <p>If you can find workouts that fit into the limited time windows you have, you've got a real shot at making it stick.</p>
+              <p>We both know that.</p>
+              <p>But here's the important caveat.</p>
+              <p>I'm not talking about some generic cookie-cutter workout plan.</p>
+              <p>I'm talking about the right workout at the right place and time that give you maximum results.</p>
+              <p>So if you want to know how to make sure your life and plan are actually in sync…</p>
+              <p>So you can finally get back in shape, keep up with your kids on the field without getting gassed and stop starting over every few weeks.</p>
+              <p>I put together a free training that breaks everything down for dads exactly like us.</p>
+              <p><a href="#">Watch it here.</a></p>
               <p>Inside, you'll find:</p>
               <ol>
                 <li>How to quickly spot the hidden training windows already baked into your current week.</li>
                 <li>How to build a "minimum viable workout" system so one chaotic sports-filled week never turns into a full restart again.</li>
                 <li>How to instantly match the right session to whatever time you have.</li>
               </ol>
+              <p>These are the fundamentals.</p>
+              <p>Once you get a clear idea of how and when to use them, sticking to your plan stops being a willpower problem.</p>
               <p>Combine this with the Stolen Minutes Method you already have, and you'll have a sustainable approach to hit your goal.</p>
-              <div class="email-sig">Talk soon,<br><strong>Mike.</strong><br><br><em>P.S. Most of the dads I work with started where you are. Once we stopped fighting the "dad life" schedule and started working with it, things just clicked.</em></div>
+              <div class="email-sig">Talk soon,<br>Mike<br><br>P.S. Most of the dads I work with started where you are. Once we stopped fighting the "dad life" schedule and started working with it, things just clicked.<br><br>If you want the same high-level accountability and a hand getting your system in place, <a href="#">go here to see if we're a fit.</a></div>
             </div>
           </div>
         </div>
@@ -362,46 +699,58 @@
               <span class="email-num">Email 4</span>
               <span class="email-type">Direct Sale</span>
             </div>
+            <div class="email-header-meta">
+              <span class="email-meta-item"><strong>Send To:</strong> Segment 2 — Dads with 5–12 y/o</span>
+              <span class="email-meta-item"><strong>When:</strong> 2 days after Email 3</span>
+            </div>
             <div class="email-subject"><strong>SL:</strong> The 1 line that ended fitness hopes for most dads</div>
-            <div class="email-preview-text">Preview: Have you heard it before?</div>
+            <div class="email-preview-text"><strong>Preview:</strong> Have you heard it before?</div>
             <div class="email-toggle">▼</div>
           </div>
           <div class="email-body-wrap">
             <div class="email-body">
-              <p><em>"I'll start when things calm down."</em></p>
+              <p class="email-quote-center">"I'll start when things calm down."</p>
               <p>Let me tell you how that usually goes, Alex.</p>
-              <p>A dad signs up for my list because something clicked. Maybe a free guide caught him off guard. Maybe his kid asked him to play for the fifth time that week. Maybe he just looked in the mirror and didn't recognize the guy staring back.</p>
-              <p>He reads my emails. Downloads the guide. Watches the training. And then… he waits. He waits for things to "slow down."</p>
-              <p>Six months later, I hear from him again. Same place. Same weight. Same "I was just about to get started" story.</p>
-              <p><strong>The harsh truth: the Monday next month looks exactly like the Monday this week. You've already been running this experiment.</strong></p>
-              <p>That's why I'm here to help dads like you take action without adding one more thing to the calendar they're already drowning in. Here's what you get when you work with me:</p>
-              <ul>
-                <li>✅ A training blueprint built around your work hours, kids' practice, commute, and bedtime — so you follow it without blowing up family time.</li>
-                <li>✅ A done-for-you decision system: exactly what to train, when to train it, and what to eat that day — no 9pm willpower needed.</li>
-                <li>✅ Direct access to me — text when you're stuck, when the week blows up, or when you need a form check. I always answer.</li>
-                <li>✅ Plan adjustments — life with school-aged kids changes every 4–6 weeks. Your plan shifts when your season shifts.</li>
+              <p>A dad signs up for my list because something clicked.</p>
+              <p>Maybe a free guide caught him off guard.<br>Maybe his kid asked him to play for the fifth time that week.<br>Maybe he just looked at himself in the mirror and didn't recognize the guy staring back.</p>
+              <p>He reads my emails. Downloads the guide. Watches the training.</p>
+              <p>And then… he waits.</p>
+              <p>He waits for things to "slow down."</p>
+              <p>Six months later, I hear from him again.</p>
+              <p>Same place. Same weight. Same "I was just about to get started" story.</p>
+              <p>I'm not telling you this to make you feel bad.</p>
+              <p>I'm telling you because I've watched it happen so many times it's become predictable.</p>
+              <p>And I don't want it to happen to you.</p>
+              <p>Because the harsh truth is…</p>
+              <p>The Monday next month looks exactly like the Monday this week.</p>
+              <p>You've already been running this experiment.</p>
+              <p>And deep down you know…</p>
+              <p>Waiting for calm isn't a plan. It's a way of feeling okay about not starting.</p>
+              <p><strong>That's why I'm here to help dads like you take action without adding one more thing to the calendar they're already drowning in.</strong></p>
+              <p>But I'm not the right trainer for most people. Why?</p>
+              <p>Well, I don't have a workout app with 400 workouts you'll never open…</p>
+              <p>No 6-week challenge that dies in week 3 for you to join…</p>
+              <p>No "community" that ghost-coaches you…</p>
+              <p>Just me, helping you get in shape around the life you already have.</p>
+              <p>Here's what you get when you work with me:</p>
+              <ul class="check-list">
+                <li>☑️ <strong>A training blueprint</strong> built around your work hours, kids' practice, commute, bedtime, so you can follow it without blowing up family time (and your "me" time).</li>
+                <li>☑️ <strong>A done-for-you decision system</strong> that tells you exactly what to train, when to train it, and what to eat that day, so you never waste willpower figuring it out at 9pm with a tired brain.</li>
+                <li>☑️ <strong>Direct access to me</strong> – text me when you're stuck, when the week blows up, or when you need a form check. I always answer.</li>
+                <li>☑️ <strong>Plan adjustments</strong> – life with school-aged kids changes every 4 to 6 weeks. Your plan shifts when your season shifts, so you never fall off, never restart, and never lose what you built.</li>
               </ul>
-              <p>I can only work with a handful of people at a time. But because you've shown me you're serious, I want to give you early access before I announce this publicly.</p>
-              <p><strong>→ Apply here.</strong> I read every application myself. If I think I can help you, we'll hop on a quick call to map it out. If it's a fit, we start that week.</p>
-              <div class="email-sig">Talk soon,<br><strong>Mike.</strong><br><br><em>P.S. If you've read this far and you're still telling yourself you'll start once you feel more ready… read the first half of this email again.</em></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ─── Email 5 (placeholder) ─── -->
-        <div class="email-card email-placeholder">
-          <div class="email-header" onclick="toggleEmail(this.parentElement)">
-            <div class="email-meta">
-              <span class="email-num">Email 5</span>
-              <span class="email-type">Coming Soon</span>
-            </div>
-            <div class="email-subject" style="color:#8896A5; font-style:italic; font-weight:400;">Subject line to be added</div>
-            <div class="email-preview-text">Slot reserved — typically a last-chance offer or re-engagement closer.</div>
-            <div class="email-toggle">▼</div>
-          </div>
-          <div class="email-body-wrap">
-            <div class="email-body">
-              <p style="color:#8896A5; font-style:italic;">Email 5 content to be added. In a live sequence, this slot handles last-chance urgency, objection handling, or a soft re-engagement for leads who opened but didn't click.</p>
+              <p>And as you might already be able to tell (or not, I don't judge)…</p>
+              <p><strong>That whole thing is a lot of work for me.</strong></p>
+              <p>That's why I can only work with a handful of people at a time.</p>
+              <p>But because you've shown me how serious you are about becoming a role model for your family by joining my list…</p>
+              <p>I want to give you early access to my 1-on-1 training as a reward for taking action.</p>
+              <p>So you can secure your spot and get in the shape your kids deserve to see before I announce this publicly on <strong>April 20th</strong> (if the application isn't full by then).</p>
+              <p>All you have to do is click the link below and fill out a short-form application.</p>
+              <p>I read every one myself. If I think I can help you (and I'm only taking dads I know I can get results for), we'll hop on a quick call to map it out.</p>
+              <p>If it's a fit, we start that week.</p>
+              <p>If it's not, I'll point you to something that might be a better match.</p>
+              <p><a href="#">Apply here.</a></p>
+              <div class="email-sig">Talk soon,<br>Mike.<br><br><em>P.S. If you've read this far and you're still telling yourself you'll start once you feel more ready… read the first half of this email again. You can afford to take care of yourself, you can't afford to waste time.</em></div>
             </div>
           </div>
         </div>
@@ -421,9 +770,19 @@
   </footer>
 
   <script>
-    function toggleEmail(card) { card.classList.toggle('open'); }
+    function showStep(n) {
+      document.querySelectorAll('.step-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === n - 1);
+      });
+      document.querySelectorAll('.step-panel').forEach(panel => {
+        panel.classList.toggle('active', parseInt(panel.dataset.step) === n);
+      });
+    }
+
+    function toggleEmail(card) {
+      card.classList.toggle('open');
+    }
   </script>
-  <script src="quiz.js"></script>
 
 </body>
 </html>
