@@ -440,8 +440,44 @@ h2 {
   padding-top: 14px;
   border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 0.86rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.75);
   line-height: 1.7;
+}
+
+/* Accordion expand button */
+.email-expand-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  width: 100%;
+  padding: 12px 22px;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.email-expand-btn:hover { color: #fff; }
+.email-expand-btn .chevron {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+.email-card.open .email-expand-btn { color: #fff; }
+.email-card.open .chevron { transform: rotate(180deg); }
+.email-body-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D04F2B;
+  margin-bottom: 14px;
 }
 
 .email-note {
@@ -817,6 +853,64 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   line-height: 1.5;
 }
 
+/* ---- Fit section ---- */
+.fit-section {
+  padding: 0 0 80px;
+}
+.fit-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.fit-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 0 0 56px;
+}
+.fit-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.fit-block h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.fit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fit-list li {
+  position: relative;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  padding-left: 18px;
+}
+.fit-block--no .fit-list li::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  color: #EF4444;
+  font-weight: 700;
+}
+.fit-block--yes .fit-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #22C55E;
+  font-weight: 700;
+}
+@media (max-width: 640px) {
+  .fit-columns { grid-template-columns: 1fr; }
+}
+
 /* ---- Google Form Embed ---- */
 .gform-wrap {
   margin-top: 36px;
@@ -966,4 +1060,9 @@ footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
   h2 { font-size: clamp(1.5rem, 6vw, 1.9rem); line-height: 1.25; }
   .personalization-section h2,
   .audit-section h2 { text-align: center; }
+  .fit-section { padding: 0 0 56px; }
+  .fit-inner { padding: 0; }
+  .fit-divider { margin-bottom: 40px; }
+  .fit-block h3 { font-size: 0.95rem; }
+  .email-expand-btn { padding: 12px 16px; }
 }
