@@ -61,7 +61,7 @@
       padding: 0 0 80px;
     }
 
-    /* Email header — flat layout, no accordion grid */
+    /* Email header — flat, always visible */
     .email-header {
       display: flex;
       flex-direction: column;
@@ -70,6 +70,51 @@
     }
     .email-toggle { display: none; }
 
+    /* Expand toggle button */
+    .email-expand-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      width: 100%;
+      padding: 12px 22px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      text-align: left;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .email-expand-btn:hover { color: #fff; }
+    .email-expand-btn .chevron {
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+      margin-left: auto;
+    }
+    .email-card.open .email-expand-btn { color: #fff; }
+    .email-card.open .chevron { transform: rotate(180deg); }
+
+    /* Collapsible body */
+    .email-body-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+    .email-card.open .email-body-wrap { max-height: 6000px; }
+
+    /* Email Body label */
+    .email-body-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #D04F2B;
+      margin-bottom: 14px;
+    }
     /* Email header meta row (Send To / When) */
     .email-header-meta {
       display: flex;
@@ -114,11 +159,6 @@
       color: #fff;
     }
 
-    /* Show all email bodies fully expanded */
-    .email-body-wrap {
-      max-height: none !important;
-      overflow: visible !important;
-    }
     .email-body a { color: #3B82F6; text-decoration: underline; }
     .email-body .email-quote-center {
       text-align: center;
@@ -216,9 +256,12 @@
             <div class="alt-row">
               <div class="email-preview-text"><strong>Alt SL:</strong> You signed up for this, Alex?</div>
             </div>
+
           </div>
+          <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
             <div class="email-body">
+              <div class="email-body-label">Email Body:</div>
               <p>Hey Alex,</p>
               <p>I went through your quiz answers…</p>
               <p>And I believe this is the exact guide you've been looking for:</p>
@@ -268,9 +311,12 @@
             <div class="alt-row">
               <div class="email-preview-text"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
             </div>
+
           </div>
+          <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
             <div class="email-body">
+              <div class="email-body-label">Email Body:</div>
               <p>Alex,</p>
               <p>If you've ever stared at your calendar on a Sunday night…</p>
               <p>Made a promise to yourself that this week would be different…</p>
@@ -339,9 +385,12 @@
               <div class="email-preview-text"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
               <div class="email-preview-text"><strong>Alt Preview:</strong> Read this to find out…</div>
             </div>
+
           </div>
+          <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
             <div class="email-body">
+              <div class="email-body-label">Email Body:</div>
               <p>Alex, believe it or not…</p>
               <p>I sometimes feel like a bit of a fortune teller.</p>
               <p>Not the kind who can tell you if you should quit your job to start a business.</p>
@@ -390,9 +439,12 @@
             </div>
             <div class="email-subject"><strong>SL:</strong> The 1 line that ended fitness hopes for most dads</div>
             <div class="email-preview-text"><strong>Preview:</strong> Have you heard it before?</div>
+
           </div>
+          <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
             <div class="email-body">
+              <div class="email-body-label">Email Body:</div>
               <p class="email-quote-center">"I'll start when things calm down."</p>
               <p>Let me tell you how that usually goes, Alex.</p>
               <p>A dad signs up for my list because something clicked.</p>
@@ -464,5 +516,11 @@
     </div>
   </footer>
 
+
+  <script>
+    function toggleEmail(btn) {
+      btn.closest('.email-card').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
