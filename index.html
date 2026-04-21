@@ -435,8 +435,26 @@
     }
     .email-header { display: flex; flex-direction: column; gap: 7px; cursor: default; }
     .email-subject, .email-preview-text { display: none; }
-    .email-card.open .email-subject { display: block; }
-    .email-card.open .email-preview-text { display: block; }
+    .email-slpv .email-subject, .email-slpv .email-preview-text { display: block; }
+    .email-slpv {
+      background: #fff;
+      padding: 14px 20px 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .email-slpv .email-subject { color: #1a1a1a; font-weight: 600; }
+    .email-slpv .email-preview-text { color: #666; font-weight: 400; }
+    .email-slpv .email-subject strong,
+    .email-slpv .email-preview-text strong {
+      color: #999;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-right: 5px;
+    }
     .email-note { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 40px; font-style: italic; }
 
     /* ── Personalization glow ── */
@@ -860,12 +878,14 @@
               <span class="email-meta-item"><strong>Send To:</strong> Segment 2: Dads with 5–12 y/o</span>
               <span class="email-meta-item"><strong>When:</strong> Immediately on sign-up</span>
             </div>
-            <div class="email-subject"><strong>SL:</strong> Your Stolen Minutes Method is here, Alex</div>
-            <div class="email-subject"><strong>Alt SL:</strong> You signed up for this?</div>
-            <div class="email-preview-text"><strong>PV:</strong> Free fitness guide for dads with active kids</div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
+            <div class="email-slpv">
+              <div class="email-subject"><strong>SL:</strong> Your Stolen Minutes Method is here, Alex</div>
+              <div class="email-subject"><strong>Alt SL:</strong> You signed up for this?</div>
+              <div class="email-preview-text"><strong>PV:</strong> Free fitness guide for dads with active kids</div>
+            </div>
             <div class="email-body">
               <div class="email-body-label">Email Body:</div>
               <p>Hey Alex,</p>
@@ -898,8 +918,8 @@
               <p>Enjoy the guide… and keep an eye out for my next email</p>
               <div class="email-sig">Talk soon,<br>Mike.</div>
             </div>
-            <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
           </div>
+          <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
         </div>
 
         <!-- ─── Email 2 ─── -->
@@ -913,12 +933,14 @@
               <span class="email-meta-item"><strong>Send To:</strong> Segment 2: Dads with 5–12 y/o</span>
               <span class="email-meta-item"><strong>When:</strong> 5 minutes after Email 1</span>
             </div>
-            <div class="email-subject"><strong>SL:</strong> "Dad bod" to "Fit dad" without missing their game</div>
-            <div class="email-subject"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
-            <div class="email-preview-text"><strong>PV:</strong> (my story)</div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
+            <div class="email-slpv">
+              <div class="email-subject"><strong>SL:</strong> "Dad bod" to "Fit dad" without missing their game</div>
+              <div class="email-subject"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
+              <div class="email-preview-text"><strong>PV:</strong> (my story)</div>
+            </div>
             <div class="email-body">
               <div class="email-body-label">Email Body:</div>
               <p>Alex,</p>
@@ -969,8 +991,8 @@
               <p>It's not what you think.</p>
               <div class="email-sig">Talk soon,<br>Mike.<br><br><strong>P.S.</strong> The system I eventually used <u><em><strong>wasn't</strong></em></u> the hardest one. It <u><em><strong>wasn't</strong></em></u> the most scientific. But it was built for a life that looks like yours, because it was designed by someone living it.<br><br><strong>If anything in this email hits close to home, reply and let me know. I read every message and I'll do my best to help.</strong></div>
             </div>
-            <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
           </div>
+          <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
         </div>
 
         <!-- ─── Email 3 ─── -->
@@ -984,13 +1006,15 @@
               <span class="email-meta-item"><strong>Send To:</strong> Segment 2: Dads with 5–12 y/o</span>
               <span class="email-meta-item"><strong>When:</strong> 1 day after Emails 1 &amp; 2</span>
             </div>
-            <div class="email-subject"><strong>SL:</strong> Your kids' sport schedule predicts your fitness plan</div>
-            <div class="email-preview-text"><strong>PV:</strong> Here's how to avoid the crash</div>
-            <div class="email-subject"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
-            <div class="email-preview-text"><strong>Alt PV:</strong> Read this to find out…</div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
+            <div class="email-slpv">
+              <div class="email-subject"><strong>SL:</strong> Your kids' sport schedule predicts your fitness plan</div>
+              <div class="email-preview-text"><strong>PV:</strong> Here's how to avoid the crash</div>
+              <div class="email-subject"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
+              <div class="email-preview-text"><strong>Alt PV:</strong> Read this to find out…</div>
+            </div>
             <div class="email-body">
               <div class="email-body-label">Email Body:</div>
               <p>Alex, believe it or not…</p>
@@ -1025,8 +1049,8 @@
               <p>Combine this with the Stolen Minutes Method you already have, and you'll have a sustainable approach to hit your goal.</p>
               <div class="email-sig">Talk soon,<br>Mike<br><br>P.S. Most of the dads I work with started where you are. Once we stopped fighting the "dad life" schedule and started working with it, things just clicked.<br><br>If you want the same high-level accountability and a hand getting your system in place, <a href="javascript:void(0)">go here to see if we're a fit.</a></div>
             </div>
-            <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
           </div>
+          <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
         </div>
 
         <!-- ─── Email 4 ─── -->
@@ -1040,11 +1064,13 @@
               <span class="email-meta-item"><strong>Send To:</strong> Segment 2: Dads with 5–12 y/o</span>
               <span class="email-meta-item"><strong>When:</strong> 2 days after Email 3</span>
             </div>
-            <div class="email-subject"><strong>SL:</strong> The 1 line that ended fitness hopes for most dads</div>
-            <div class="email-preview-text"><strong>PV:</strong> Have you heard it before?</div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
           <div class="email-body-wrap">
+            <div class="email-slpv">
+              <div class="email-subject"><strong>SL:</strong> The 1 line that ended fitness hopes for most dads</div>
+              <div class="email-preview-text"><strong>PV:</strong> Have you heard it before?</div>
+            </div>
             <div class="email-body">
               <div class="email-body-label">Email Body:</div>
               <p class="email-quote-center">"I'll start when things calm down."</p>
@@ -1090,8 +1116,8 @@
               <p><a href="javascript:void(0)">Apply here.</a></p>
               <div class="email-sig">Talk soon,<br>Mike.<br><br><em>P.S. If you've read this far and you're still telling yourself you'll start once you feel more ready… read the first half of this email again.</em></div>
             </div>
-            <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
           </div>
+          <button class="email-close-btn" onclick="toggleEmail(this.closest('.email-card').querySelector('.email-expand-btn'))">Close ▴</button>
         </div>
 
       </div><!-- /email-stack -->

@@ -485,13 +485,13 @@ h2 {
 .email-card.open .email-expand-btn { color: #fff; }
 .email-card.open .chevron { transform: rotate(180deg); }
 .email-close-btn {
-  display: block;
+  display: none;
   width: 100%;
   background: none;
   border: none;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(255,255,255,0.07);
   padding: 12px 20px;
-  color: rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.35);
   font-size: 0.82rem;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
@@ -499,7 +499,8 @@ h2 {
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-.email-close-btn:hover { color: #D04F2B; }
+.email-card.open .email-close-btn { display: block; }
+.email-close-btn:hover { color: rgba(255,255,255,0.7); }
 .email-body-label {
   font-size: 0.68rem;
   font-weight: 700;
