@@ -1218,8 +1218,12 @@
       card.classList.toggle('open');
       if (wasOpen) {
         const savedY = window.scrollY;
-        requestAnimationFrame(() => window.scrollTo({ top: savedY, behavior: 'instant' }));
+        let locked = true;
+        const lockScroll = () => { if (locked) window.scrollTo({ top: savedY, behavior: 'instant' }); };
+        window.addEventListener('scroll', lockScroll, { passive: true });
         setTimeout(() => {
+          locked = false;
+          window.removeEventListener('scroll', lockScroll);
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 400);
       }
