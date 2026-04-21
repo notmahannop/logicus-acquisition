@@ -412,14 +412,24 @@
       word-break: break-word;
       overflow-wrap: break-word;
     }
+    .email-subject {
+      background: rgba(208,79,43,0.1);
+      border: 1px solid rgba(208,79,43,0.2);
+      border-radius: 5px;
+      padding: 5px 9px;
+    }
     .email-subject strong,
     .email-preview-text strong {
-      color: rgba(255,255,255,0.38);
-      font-size: 0.72rem;
+      display: inline-block;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-right: 4px;
+      margin-right: 5px;
+      background: rgba(255,255,255,0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
     }
     .alt-row {
       display: flex;
@@ -857,7 +867,7 @@
             <div class="email-subject"><strong>SL:</strong> Your Stolen Minutes Method is here, Alex</div>
             <div class="email-preview-text"><strong>Preview:</strong> Free fitness guide for dads with active kids</div>
             <div class="alt-row">
-              <div class="email-preview-text"><strong>Alt SL:</strong> You signed up for this?</div>
+              <div class="email-subject"><strong>Alt SL:</strong> You signed up for this?</div>
             </div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
@@ -909,9 +919,9 @@
               <span class="email-meta-item"><strong>When:</strong> 5 minutes after Email 1</span>
             </div>
             <div class="email-subject"><strong>SL:</strong> "Dad bod" to "Fit dad" without missing their game</div>
-            <div class="email-preview-text"><strong>Preview:</strong> My story</div>
+            <div class="email-preview-text"><strong>Preview:</strong> (my story)</div>
             <div class="alt-row">
-              <div class="email-preview-text"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
+              <div class="email-subject"><strong>Alt SL:</strong> The day my son asked a question I couldn't answer…</div>
             </div>
           </div>
           <button class="email-expand-btn" onclick="toggleEmail(this)">Read full email <span class="chevron">▾</span></button>
@@ -983,7 +993,7 @@
             <div class="email-subject"><strong>SL:</strong> Your kids' sport schedule predicts your fitness plan</div>
             <div class="email-preview-text"><strong>Preview:</strong> Here's how to avoid the crash</div>
             <div class="alt-row">
-              <div class="email-preview-text"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
+              <div class="email-subject"><strong>Alt SL:</strong> Will your kids see a strong dad or a winded one this season?</div>
               <div class="email-preview-text"><strong>Alt Preview:</strong> Read this to find out…</div>
             </div>
           </div>
