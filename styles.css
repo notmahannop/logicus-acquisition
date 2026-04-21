@@ -51,8 +51,20 @@ body {
   border: none;
   line-height: 1;
 }
-.btn-coral { background: var(--coral); color: #fff; }
-.btn-coral:hover { background: #D04F2B; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(232,96,58,0.35); }
+.btn-coral {
+  background: linear-gradient(180deg, #E8673A 0%, #C94420 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(208,79,43,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-coral:hover {
+  background: linear-gradient(180deg, #EC7044 0%, #D04F2B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(208,79,43,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-coral:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(208,79,43,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+}
 .btn-lg { padding: 16px 36px; font-size: 1.05rem; }
 .btn-outline { background: transparent; border: 2px solid var(--coral); color: var(--coral); }
 .btn-outline:hover { background: var(--coral); color: #fff; }
