@@ -1217,6 +1217,8 @@
       const wasOpen = card.classList.contains('open');
       card.classList.toggle('open');
       if (wasOpen) {
+        const savedY = window.scrollY;
+        requestAnimationFrame(() => window.scrollTo({ top: savedY, behavior: 'instant' }));
         setTimeout(() => {
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 400);
